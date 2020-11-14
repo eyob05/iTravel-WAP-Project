@@ -348,7 +348,7 @@
                                             <div class="profile-thumb">
                                                 <a href="#">
                                                     <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-28.jpg" alt="profile picture">
+                                                        <img src="assets/images/profile/cnn.png" alt="profile picture">
                                                     </figure>
                                                 </a>
                                             </div>
@@ -364,7 +364,7 @@
                                             <div class="profile-thumb">
                                                 <a href="#">
                                                     <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-31.jpg" alt="profile picture">
+                                                        <img src="assets/images/profile/eri.jpg" alt="profile picture">
                                                     </figure>
                                                 </a>
                                             </div>
@@ -380,7 +380,7 @@
                                             <div class="profile-thumb">
                                                 <a href="#">
                                                     <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-27.jpg" alt="profile picture">
+                                                        <img src="assets/images/profile/cctv.jpeg" alt="profile picture">
                                                     </figure>
                                                 </a>
                                             </div>
@@ -396,7 +396,7 @@
                                             <div class="profile-thumb">
                                                 <a href="#">
                                                     <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-34.jpg" alt="profile picture">
+                                                        <img src="assets/images/profile/bbc.png" alt="profile picture">
                                                     </figure>
                                                 </a>
                                             </div>
@@ -412,7 +412,7 @@
                                             <div class="profile-thumb">
                                                 <a href="#">
                                                     <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-32.jpg" alt="profile picture">
+                                                        <img src="assets/images/profile/voa.png" alt="profile picture">
                                                     </figure>
                                                 </a>
                                             </div>
