@@ -1,0 +1,4 @@
+persistence.xml
+/src/main/webapp/resources/META-INF/persistence.xml
+iTravel/target/
+iTravel/src/main/java/newclass.java
