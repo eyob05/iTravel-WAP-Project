@@ -49,6 +49,11 @@ public class User implements Serializable {
     @Column(name = "ACCESS", nullable = true)
     private String access;
 
+    @Column(name = "PHOTOLINK", nullable = true )
+    private String photoLink = "assets/images/profile/male.png";
+
+    @Column(name = "TIMELINELINK", nullable = true)
+    private String timelinePhotoLink = "assets/images/banner/profile-banner.jpg";
 
     @Transient
     private List<Post> posts = new ArrayList<>();
@@ -86,6 +91,12 @@ public class User implements Serializable {
     public long getId() {
         return id;
     }
+    public void setPhotoLink( String photoLink ){ this.photoLink = photoLink; }
+    public String getPhotoLink(){ return photoLink; }
+
+    public void setTimelinePhotoLink( String timelinePhotoLink ){ this.timelinePhotoLink = timelinePhotoLink; }
+    public String getTimelinePhotoLink(){ return timelinePhotoLink; }
+
     public void setId(long id) {
         this.id = id;
     }

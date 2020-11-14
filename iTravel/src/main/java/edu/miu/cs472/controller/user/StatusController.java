@@ -1,10 +1,9 @@
-package edu.miu.cs472.controller;
+package edu.miu.cs472.controller.user;
 
 import com.google.gson.Gson;
 import edu.miu.cs472.dao.user.IUserDao;
 import edu.miu.cs472.dao.user.UserDao;
 import edu.miu.cs472.domain.User;
-
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

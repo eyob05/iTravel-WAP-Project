@@ -1,4 +1,4 @@
-//package edu.miu.cs472.controler.user;//package edu.mum.cs.controller.user;
+package edu.miu.cs472.controller.user;//package edu.miu.cs472.controler.user;//package edu.mum.cs.controller.user;
 //
 //import edu.mum.cs.domain.User;
 //

@@ -32,7 +32,7 @@ public class LoginController extends HttpServlet {
             if (authenticated) {
                 HttpSession session = request.getSession();
                 session.setAttribute(ADMIN, ADMIN);
-                response.sendRedirect("/users");
+                response.sendRedirect("users");
             }else
                 response.sendRedirect("/admin-login");
         }catch (Exception ex){

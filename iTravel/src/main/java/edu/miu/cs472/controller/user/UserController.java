@@ -1,13 +1,11 @@
-package edu.miu.cs472.controller;
+package edu.miu.cs472.controller.user;
 
 import com.google.gson.Gson;
 import edu.miu.cs472.dao.post.INotificationDao;
 import edu.miu.cs472.dao.post.NotificationDao;
 import edu.miu.cs472.dao.user.IUserDao;
 import edu.miu.cs472.dao.user.UserDao;
-import edu.miu.cs472.domain.Post;
 import edu.miu.cs472.domain.User;
-
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,10 +36,11 @@ public class UserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         try{
             List<User> users = dao.findAll();
+            //request.getpara
             request.setAttribute("users", users);
             request.getRequestDispatcher("list-users.jsp")
                     .forward(request, response);
-            response.sendRedirect("/users");
+            response.sendRedirect("users");
         }catch (Exception ex){
             LOGGER.log(Level.SEVERE, ex.getMessage());
         }

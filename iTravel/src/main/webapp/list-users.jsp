@@ -32,7 +32,7 @@
         <div class="topbar-main">
             <div class="container-fluid">
                 <div>
-                    <a href="/admin-dashboard" class="logo">
+                    <a href="users" class="logo">
                         sudo<span class="logo-light">
                             <i class="fas fa-paper-plane"></i> iTravel
                         </span>
@@ -41,7 +41,7 @@
                 <div class="menu-extras topbar-custom navbar p-0">
                     <ul class="navbar-right ml-auto list-inline float-right mb-0">
                         <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                            <a class="nav-link waves-effect" href="/admin-dashboard" id="btn-fullscreen">
+                            <a class="nav-link waves-effect" href="users" id="btn-fullscreen">
                                 <i class="mdi mdi-arrow-expand-all noti-icon"></i>
                             </a>
                         </li>
@@ -53,7 +53,7 @@
                                          class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                    <a class="dropdown-item text-danger" href="/admin-logout"><i
+                                    <a class="dropdown-item text-danger" href="admin-logout"><i
                                             class="mdi mdi-power text-danger"></i> Logout</a>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-right">
-                        <li class="breadcrumb-item"><a href="/admin-dashboard">iTravel</a></li>
+                        <li class="breadcrumb-item"><a href="users">iTravel</a></li>
                         <li class="breadcrumb-item"><a href="javascript:void(0);">Users</a></li>
                     </ol>
                 </div>
@@ -188,7 +188,7 @@
                     <div class="card-body">
                         <h5 class="card-header">
                             List of users
-                            <button class="btn btn-primary" id="show_form">
+                            </a><button disabled class="btn btn-primary"  id="show_form">
                                 <i class="fa fa-plus-circle"></i>
                                 New User
                             </button>

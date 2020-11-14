@@ -45,18 +45,10 @@ public class HomeServlet extends HttpServlet {
             if (session != null) {
 
                 user = (User) session.getAttribute("authenticated");
-                //req.setAttribute("user", user);
-
-                System.out.println("Phase 1 passed");
+                req.setAttribute("user", user);
                 session.setAttribute("user",user);
-
-                System.out.println("Phase 2 passed");
                 session.setAttribute("notifications",notificationDao.findAll());
-
-                System.out.println("Phase 3 passed");
                 session.setAttribute("posts",postService.getPostsUserHome(user));
-
-                System.out.println("Phase 4 passed");
                 RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
                 rd.forward(req, resp);
             } else {
