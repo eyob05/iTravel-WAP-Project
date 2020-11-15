@@ -62,12 +62,15 @@
                                         <div class="row align-items-center">
                                             <div class="col-12 col-sm">
                                                 <input type="text" id="input" name="username" required="required" placeholder="Email or Userame" class="single-field">
+                                                <span style="color:#dc4734"  >span</span>
                                             </div>
                                             <div class="col-12 col-sm">
                                                 <input type="password" name="password"  required="required" placeholder="Password" class="single-field">
+                                                <span id = "tries">You have 1 try only.</span>
                                             </div>
-                                            <div class="col-12 col-sm-auto">
-                                                <button type="submit" class="login-btn">Login</button>
+                                            <div class="col-12 col-sm">
+                                                <button id="loginBtn" type="submit" class="login-btn">Login</button>
+                                                <span style="color:#dc4734; display: block" >spanfsadfdsafdsafdsafdsafdsafsafdsafdsaf</span>
                                             </div>
                                         </div>
                                     </form>
@@ -92,6 +95,7 @@
                                                 <div class="col-12">
                                                     <input required id="emailCreate" type="email" name="email" class="single-field" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                                            title="Must be written in Email format">
+                                                    <span style="color:red" id="emailError">Email already used!</span>
                                                 </div>
                                                 <div class="col-md-5">
                                                     <input required type="text" name="fname" class="single-field" placeholder="First Name">

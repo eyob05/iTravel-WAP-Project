@@ -38,6 +38,7 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <link rel="stylesheet" href="resources/css/weather.css">
 </head>
 
 <body>
@@ -251,90 +252,23 @@
                             <!-- widget single item start -->
                             <div class="card widget-item">
                                 <h4 class="widget-title">Weather Condition</h4>
-                                <!-- <div class="widget-body">
-                                    <ul class="like-page-list-wrapper">
-                                        <li class="unorder-list"> -->
-                                            <!-- profile picture end -->
-                                            <!-- <div class="profile-thumb">
-                                                <a href="#">
-                                                    <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-33.jpg" alt="profile picture">
-                                                    </figure>
-                                                </a>
-                                            </div> -->
-                                            <!-- profile picture end -->
-
-                                            <!-- <div class="unorder-list-info">
-                                                <h3 class="list-title"><a href="#">Travel The World</a></h3>
-                                                <p class="list-subtitle"><a href="#">adventure</a></p>
-                                            </div>
-                                            <button class="like-button active">
-                                                <img class="heart" src="assets/images/icons/heart.png" alt="">
-                                                <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
-                                            </button>
-                                        </li>
-                                        <li class="unorder-list"> -->
-                                            <!-- profile picture end -->
-                                            <!-- <div class="profile-thumb">
-                                                <a href="#">
-                                                    <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-30.jpg" alt="profile picture">
-                                                    </figure>
-                                                </a>
-                                            </div> -->
-                                            <!-- profile picture end -->
-
-                                            <!-- <div class="unorder-list-info">
-                                                <h3 class="list-title"><a href="#">Foodcort Nirala</a></h3>
-                                                <p class="list-subtitle"><a href="#">food</a></p>
-                                            </div>
-                                            <button class="like-button">
-                                                <img class="heart" src="assets/images/icons/heart.png" alt="">
-                                                <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
-                                            </button>
-                                        </li>
-                                        <li class="unorder-list"> -->
-                                            <!-- profile picture end -->
-                                            <!-- <div class="profile-thumb">
-                                                <a href="#">
-                                                    <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-5.jpg" alt="profile picture">
-                                                    </figure>
-                                                </a>
-                                            </div> -->
-                                            <!-- profile picture end -->
-
-                                            <!-- <div class="unorder-list-info">
-                                                <h3 class="list-title"><a href="#">Rolin Theitar</a></h3>
-                                                <p class="list-subtitle"><a href="#">drama</a></p>
-                                            </div>
-                                            <button class="like-button">
-                                                <img class="heart" src="assets/images/icons/heart.png" alt="">
-                                                <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
-                                            </button>
-                                        </li>
-                                        <li class="unorder-list"> -->
-                                            <!-- profile picture end -->
-                                            <!-- <div class="profile-thumb">
-                                                <a href="#">
-                                                    <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-29.jpg" alt="profile picture">
-                                                    </figure>
-                                                </a>
-                                            </div> -->
-                                            <!-- profile picture end -->
-
-                                            <!-- <div class="unorder-list-info">
-                                                <h3 class="list-title"><a href="#">Active Mind</a></h3>
-                                                <p class="list-subtitle"><a href="#">fitness</a></p>
-                                            </div>
-                                            <button class="like-button">
-                                                <img class="heart" src="assets/images/icons/heart.png" alt="">
-                                                <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div> -->
+                                <div class="containe">
+                                    <div class="notification"> </div>
+                                    <div class="weather-container">
+                                        <div class="weather-icon">
+                                            <img src="resources/images/icons/unknown.png" alt="">
+                                        </div>
+                                        <div class="temperature-value">
+                                            <p>- °<span>C</span></p>
+                                        </div>
+                                        <div class="temperature-description">
+                                            <p> - </p>
+                                        </div>
+                                        <div class="location">
+                                            <p>-</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- widget single item end -->
 
@@ -625,6 +559,7 @@ Resen
     <script src="assets/js/plugins/isotope.pkgd.min.js"></script>
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+<script src="resources/js/app.js"></script>
 
 </body>
 

@@ -56,7 +56,7 @@
             width: 100%;
             border: none;
             background-color: transparent;
-            border-bottom: 1px solid #999;
+            border-bottom: 3px solid red;
             padding: 5px 10px;
             margin-bottom: 28px;
         }
@@ -182,11 +182,11 @@
     ::-webkit-input-placeholder { /* Edge */
         color: #ddd;
     }
-      
+
     :-ms-input-placeholder { /* Internet Explorer 10-11 */
         color: #ddd;
     }
-      
+
     ::placeholder {
         color: #ddd;
     }
