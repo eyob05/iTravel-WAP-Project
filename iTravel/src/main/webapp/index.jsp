@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="login-area">
-                                    <form  method="post" action = "login">
+                                    <form  id="loginForm"  name="loginForm" method="post" action = "">
                                         <div class="row align-items-center">
                                             <div class="col-12 col-sm">
                                                 <input type="text" id="input" name="username" required="required" placeholder="Email or Userame" class="single-field">

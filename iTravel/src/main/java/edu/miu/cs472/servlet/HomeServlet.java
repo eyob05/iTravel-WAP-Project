@@ -32,7 +32,6 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp){
         try {
-            System.out.println("entered doGet of home");
             // add testing date
             PostService postService = new PostService();
             INotificationDao notificationDao = new NotificationDao();
@@ -49,7 +48,6 @@ public class HomeServlet extends HttpServlet {
                 session.setAttribute("user",user);
                 session.setAttribute("notifications",notificationDao.findAll());
                 session.setAttribute("posts",postService.getPostsUserHome(user));
-                System.out.println("home page called");
                 RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
                 rd.forward(req, resp);
             } else {

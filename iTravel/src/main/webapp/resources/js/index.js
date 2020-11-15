@@ -25,22 +25,26 @@ $(function(){
             }
         )}); //Ajax to check if email exists in DB
 
-    $('#loginBtn').click(function(event){
+
+
+
+
+
+    $('#loginForm').submit(function(event){
         event.preventDefault();
         $.ajax( "passwordChecker", {
-            "type" : "POST",
-            "data" : {"email" : $("input[name='username']").val(),
-                      "password": $("input[name='password']").val()}
+            type : "POST",
+            data : {"email" : $("input[name='username']").val(),
+                      "password": $("input[name ='password']").val()}
         }).done(function(resp){
-
+            console.log(resp);
             let value = parseInt(resp);
-
-            console.log(value);
             if((value % 10) > 3){
                 $("#tries").css('color', '#dc4734' );
                 $("#tries").html("Account Active!") ;
             }
             else if ((value % 10) === 3 ){
+                $("#tries").css('color', 'white' );
                 $("#tries").html("Account Deactivated! Contact Admin!") ;
                 alert("Account Deactivated! Contact Admin!");
             }
@@ -49,6 +53,10 @@ $(function(){
                 $("#tries").html("you have " + (3 - (value % 10)) + " tries left!");
             }
 
+            if(resp == 'PASS'){
+                $("#tries").css('color', 'white' );
+                $("#tries").html('Login Verified, Logging in.....').fadeTo(900,1,function(){document.location='/login'});
+            }
         }).fail(function (){
                 alert("Failed!");
             }

@@ -4,7 +4,7 @@ import edu.miu.cs472.dao.user.IUserDao;
 import edu.miu.cs472.dao.user.UserDao;
 import edu.miu.cs472.domain.User;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -20,18 +20,24 @@ public class PasswordCheckerLoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 
-        try {
-            resp.sendRedirect("/home");
-        } catch (Exception ex) {
-            LOGGER.log(Level.SEVERE, ex.getMessage());
+    }
+    public void deactivateUser(String email, IUserDao userDao){
+        User userObj = null;
+        List<User> users = userDao.findAll();
+
+        for(User user : users ){
+            if (user.getEmail().equals(email.trim()))
+                userObj = user;
+        }
+        if(userObj != null){
+            userObj.setActive(Boolean.FALSE);
+            userDao.create(userObj);
         }
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String pass = req.getParameter("password");
-        System.out.println(email + " " + pass);
         User userObj=null;
         IUserDao userDao = new UserDao();
         List<User> users = userDao.findAll();
@@ -45,36 +51,51 @@ public class PasswordCheckerLoginServlet extends HttpServlet {
                 break;
             }
         }
-
-        if(passCorrect) {
-            //RequestDispatcher reqDesp = req.getRequestDispatcher("login");
-            //reqDesp.forward(req, resp);
-            Cookie[] cookie = req.getCookies();
-            cookie[0].setMaxAge(0);
-            resp.addCookie(cookie[0]);
+        if(passCorrect && !userObj.isActive()){
+            resp.getWriter().write("3");
+        }
+        else if(passCorrect && userObj.isActive()) {
             HttpSession session = req.getSession();
+            session.setAttribute("username", email);
+            session.setAttribute("password", pass);
             session.setAttribute("authenticated", userObj);
-            req.setAttribute("user", userObj);
-            resp.sendRedirect("/profile.html");
-        }else {
-            int cookieCount = 0;
+
+            resp.getWriter().write("PASS");
+        }
+        else {
+
             for (Cookie cookie : req.getCookies()) {
-                System.out.println(cookie.getValue() + " our cookie value");
+                String count = "";
                 if (cookie.getName().equals("count")) {
-                    cookieCount = Integer.parseInt(cookie.getValue().trim());
-                    cookie.setValue("" + ++cookieCount);
-                    System.out.println("we had cookie set: " + cookieCount);
-                    resp.addCookie(cookie);
-                }else {
-                    Cookie tries = new Cookie("count", "1");
-                    tries.setMaxAge(60 * 60 * 24);
-                    cookieCount++;
+                    count = cookie.getValue().trim();
+                    if(count.equals("2"))
+                    {
+                        count = "3";
+                        System.out.println("DEACTIVATING USER");
+                        cookie.setValue(count);
+                        resp.addCookie(cookie);
+                        deactivateUser(email, userDao);
+
+                    }
+                    else if(count.equals("1")){
+                        count = "2";
+                        cookie.setValue(count);
+                        resp.addCookie(cookie);
+                    }
+                    else if(count.equals("3")){
+                        count = "3";
+                        cookie.setValue(count);
+                        resp.addCookie(cookie);
+                    }
+                } else {
+                    count = "1";
+                    Cookie tries = new Cookie("count", count);
+                    tries.setMaxAge(60*10);
                     resp.addCookie(tries);
-                    System.out.println("we made new cookie : " + cookieCount);
                 }
                 resp.setContentType("text/plain");
                 resp.setCharacterEncoding("UTF-8");
-                resp.getWriter().write(cookieCount + "");
+                resp.getWriter().write(count);
             }
         }
     }
