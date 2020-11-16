@@ -81,8 +81,8 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content notification-content">
-                                                        <a href="profile.html">Robert Faul</a>,
-                                                        <a href="profile.html">william jhon</a>
+                                                        <a href="profile.jsp">Robert Faul</a>,
+                                                        <a href="profile.jsp">william jhon</a>
                                                         <p>and 35 other people reacted to your photo</p>
                                                     </div>
                                                     <!-- message content end -->
@@ -104,8 +104,8 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content notification-content">
-                                                        <a href="profile.html">Robert mushkil</a>,
-                                                        <a href="profile.html">Terry jhon</a>
+                                                        <a href="profile.jsp">Robert mushkil</a>,
+                                                        <a href="profile.jsp">Terry jhon</a>
                                                         <p>and 20 other people reacted to your photo</p>
                                                     </div>
                                                     <!-- message content end -->
@@ -127,8 +127,8 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content notification-content">
-                                                        <a href="profile.html">Horijon Mbala</a>,
-                                                        <a href="profile.html">Bashu jhon</a>
+                                                        <a href="profile.jsp">Horijon Mbala</a>,
+                                                        <a href="profile.jsp">Bashu jhon</a>
                                                         <p>and 55 other people reacted to your post</p>
                                                     </div>
                                                     <!-- message content end -->
@@ -188,7 +188,7 @@
                                         </div>
                                         <div class="profile-body">
                                             <ul>
-                                                <li><a href="profile.html"><i class="flaticon-user"></i>Profile</a></li>
+                                                <li><a href="profile.jsp"><i class="flaticon-user"></i>Profile</a></li>
                                                 <!-- <li><a href="#"><i class="flaticon-message"></i>Inbox</a></li>
                                                 <li><a href="#"><i class="flaticon-document"></i>Activity</a></li> -->
                                             </ul>
@@ -231,17 +231,17 @@
 
 
                                     <figure class="profile-banner-small">
-                                        <a href="profile.html">
+                                        <a href="profile.jsp">
                                             <img src="assets/images/banner/" alt="">
                                         </a>
-                                        <a href="profile.html" class="profile-thumb-2">
+                                        <a href="profile.jsp" class="profile-thumb-2">
                                             <img src="assets/images/profile/male.png" alt="">
                                         </a>
                                     </figure>
 
 
                                     <div class="profile-desc text-center">
-                                        <h6 class="author"><a href="profile.html">${user.firstName} ${user.lastName}</a></h6>
+                                        <h6 class="author"><a href="profile.jsp">${user.firstName} ${user.lastName}</a></h6>
                                         <p>Any one can join with but Social network us if you want Any one can join with us if you want</p>
                                     </div>
                                 </div>
@@ -390,21 +390,26 @@
                                 <!-- Modal start -->
                                 <div class="modal fade" id="textbox" aria-labelledby="textbox">
                                     <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Share Your Mood</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                        <form class="share-text-box" method="post" action="addPost" enctype="multipart/form-data" >
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Share Your Mood</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <%--                                                <%@include file="post_form.jsp"%>--%>
+                                                </div>
+                                                <div class="modal-body custom-scroll">
+                                                    <textarea name="postDetails" id="postDetails" class="share-field-big custom-scroll" placeholder="Say Something"></textarea>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="file" class="post-share-btn" name="image" id="image">
+                                                    <%--                                                <button type="submit">Post</button>--%>
+                                                    <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
+                                                    <button type="submit" class="post-share-btn">post</button>
+                                                </div>
                                             </div>
-                                            <div class="modal-body custom-scroll">
-                                                <textarea name="share" class="share-field-big custom-scroll" placeholder="Say Something"></textarea>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
-                                                <button type="button" class="post-share-btn">post</button>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <!-- Modal end -->

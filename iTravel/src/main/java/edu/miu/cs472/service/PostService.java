@@ -49,5 +49,6 @@ public class PostService {
                 notificationDao.create(new Notification(details, LocalDateTime.now(), post, user));
             }
         }
+
     }
 }

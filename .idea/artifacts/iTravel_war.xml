@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="iTravel:war">
+    <output-path>$PROJECT_DIR$/iTravel/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>iTravel</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="wap_project.war">
+      <element id="artifact" artifact-name="iTravel:war exploded" />
+    </root>
+  </artifact>
+</component>

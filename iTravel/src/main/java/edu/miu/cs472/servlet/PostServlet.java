@@ -4,7 +4,9 @@ package edu.miu.cs472.servlet;
 import com.google.gson.Gson;
 
 import edu.miu.cs472.dao.GenericJpaDao;
+import edu.miu.cs472.dao.post.IPhotoDao;
 import edu.miu.cs472.dao.post.IPostDao;
+import edu.miu.cs472.dao.post.PhotoDao;
 import edu.miu.cs472.dao.post.PostDao;
 import edu.miu.cs472.domain.Photo;
 import edu.miu.cs472.domain.Post;
@@ -37,42 +39,42 @@ public class PostServlet extends HttpServlet {
     private List<Post> posts = new ArrayList<>();
 
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("1 Reaching the post Servlet");
         UPLOAD_DIRECTORY = req.getServletContext().getInitParameter("imageUploads");
-        Photo photo = new Photo();
-        String photoName = "";
-        Map<String, String> params = new HashMap<>();
-        String postDetails = "";
-        Post post = new Post();
+        //String photoDetails= req.getParameter("detail");
 
+        Photo photo = new Photo();
+        String photoLink = "";
+        Map<String, String> params = new HashMap<>();
+
+        Post post = new Post();
+        System.out.println("2 Reaching the post Servlet");
         //process only if its multipart content
         if(ServletFileUpload.isMultipartContent(req)){
             try {
                 List<FileItem> multiparts = new ServletFileUpload(
                         new DiskFileItemFactory()).parseRequest(req);
-
+                System.out.println("3 Reaching the post Servlet");
                 for(FileItem item : multiparts){
                     if(item.isFormField()) {
                         String name = item.getFieldName();
                         String value = item.getString();
                         params.put(name,value);
+                        System.out.println("4 Reaching the post Servlet");
                     }
                     else{
                         String name = new File(item.getName()).getName();
                         // set the photo name
-                        photoName = name;
-                        photo.setLink(photoName);
-                        item.write( new File(UPLOAD_DIRECTORY + File.separator + photoName));
+                        photoLink = name;
+                        System.out.println(photoLink);
+                        photo.setLink(photoLink);
+                        item.write( new File(UPLOAD_DIRECTORY + File.separator + photoLink));
                     }
                 }
-
+                System.out.println("5 Reaching the post Servlet");
                 //File uploaded successfully
                 req.setAttribute("message", "File Uploaded Successfully");
             } catch (Exception ex) {
@@ -83,11 +85,12 @@ public class PostServlet extends HttpServlet {
             req.setAttribute("message",
                     "Sorry this Servlet only handles file upload request");
         }
-
+        System.out.println("6 Reaching the post Servlet");
         // add post to the database
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("user");
         post.setDetails(params.get("postDetails"));
+
         post.setPhoto(photo);
         post.setUser(user);
         post.setTime(LocalDateTime.now());
@@ -95,20 +98,24 @@ public class PostServlet extends HttpServlet {
 
         // add post to database
         IPostDao postDao = new PostDao();
+        IPhotoDao photoDao = new PhotoDao();
+
         PostService postService = new PostService();
         Post dbPost = postDao.create(post);
+        Photo dbPhoto = photoDao.create(photo);
         // send notifications
         postService.addPostNotification(post);
         //post.setUser(new User());
         // save post to database
-        PrintWriter out = resp.getWriter();
-
+        //PrintWriter out = resp.getWriter();
+        resp.sendRedirect("home.jsp");
         // convert to json
-        Gson gn = new Gson();
-        String postsJson = gn.toJson(postService.getPostsUserHome(user));
-        resp.setContentType("application/json");
-        out.write(postsJson);
+//        Gson gn = new Gson();
+//        String postsJson = gn.toJson(postService.getPostsUserHome(user));
+//        resp.setContentType("application/json");
+//        out.write(postsJson);
         //abstractDao.save(post);
+
 
     }
 

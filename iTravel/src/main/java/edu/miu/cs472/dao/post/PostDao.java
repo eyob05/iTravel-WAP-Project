@@ -18,7 +18,7 @@ public class PostDao extends GenericJpaDao<Long, Post> implements IPostDao {
     @Override
     public List<Post> getPostsUserHome(User userId) {
         String uid = ""+userId.getId();
-        String sql = "SELECT distinct POSTS.* from FOLLOW,POSTS where  (POSTS.USER_ID = FOLLOW.follower_ID and FOLLOW.followed_ID = " + uid+ " ) or POSTS.USER_ID = " + uid+ " ORDER BY POSTS.TIME";
+        String sql = "SELECT distinct POSTS.* from FOLLOW,POSTS where  (POSTS.USER_ID = FOLLOW.follower_ID and FOLLOW.followed_ID = " + uid+ " ) or POSTS.USER_ID = " + uid+ " ORDER BY POSTS.TIME desc";
         Query q = manager.createNativeQuery(sql,Post.class);
         List<Post> posts = q.getResultList();
         return posts;
