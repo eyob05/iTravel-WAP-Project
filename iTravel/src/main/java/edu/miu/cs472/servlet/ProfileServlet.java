@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import edu.miu.cs472.dao.user.IUserDao;
 import edu.miu.cs472.dao.user.UserDao;
 import edu.miu.cs472.domain.User;
+import edu.miu.cs472.service.PostService;
 
 
 import javax.servlet.RequestDispatcher;
@@ -42,11 +43,23 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            System.out.println("Inside doGet method of Profile servlet");
             User user;
             if (request.getSession() != null) {
-                user = (User) request.getSession().getAttribute("user");
+                IUserDao userDao = new UserDao();
+                PostService postService = new PostService();
+
+                long userId = Long.parseLong(request.getParameter("rf"));
+
+                user = userDao.findById(userId);
+                boolean isSelf = false;
+                if(user.getId()==  ((User)request.getSession().getAttribute("user")).getId())  {
+                    isSelf = true;
+                }
+                request.setAttribute("isSelf",isSelf);
                 request.setAttribute("user", user);
-                RequestDispatcher rd = request.getRequestDispatcher("views/user/profile.jsp");
+                request.setAttribute("timelinePosts", postService.getPostsByUser(user));
+                RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
                 rd.forward(request, response);
             } else {
                 response.sendRedirect("/");
@@ -59,6 +72,7 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            System.out.println("Inside doPost method of Profile servlet");
             HttpSession session = req.getSession();
             User user = userprofile(req);
             session.setAttribute("user", user);
@@ -78,17 +92,6 @@ public class ProfileServlet extends HttpServlet {
     }
 
     private User userprofile(HttpServletRequest req) {
-//        String fname = req.getParameter("firstname");
-//        String lname = req.getParameter("lastname");
-//        String email = req.getParameter("email");
-//        String phone = req.getParameter("myphone");
-//        String day = req.getParameter("day");
-//        String month = req.getParameter("month");
-//        String year = req.getParameter("year");
-//        String city = req.getParameter("cityyy");
-//        String country = req.getParameter("country");
-//        String gender = req.getParameter("gender");
-//        return new User(fname, lname, email, phone, day, month, year, city, country, gender);
 
         String firstName = req.getParameter("fname");
         String middleName = req.getParameter("mname");

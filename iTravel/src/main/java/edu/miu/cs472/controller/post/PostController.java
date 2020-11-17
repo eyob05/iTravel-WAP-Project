@@ -31,4 +31,19 @@ public class PostController extends HttpServlet {
             LOGGER.log(Level.SEVERE, ex.getMessage());
         }
     }
+
+    protected void doPost(HttpServletRequest request,HttpServletResponse response){
+        String id=request.getParameter("likes");
+        long i= Long.parseLong(id);
+        PostDao postDao=new PostDao();
+        Post post=postDao.findById(i);
+        post.setLikes(post.getLikes()+1);
+        postDao.create(post);
+
+
+
+
+    }
+
+
 }

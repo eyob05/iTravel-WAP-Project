@@ -24,8 +24,48 @@ Table of content
 21. modal
 22. sidebar
 23. footer
+
+
 -------------------------------------------------------------------*/
+
+body {
+  background: #eee
+}
+
+.date {
+  font-size: 11px
+}
+
+.comment-text {
+  font-size: 12px
+}
+
+.fs-12 {
+  font-size: 12px
+}
+
+.shadow-none {
+  box-shadow: none
+}
+
+.name {
+  color: #007bff
+}
+
+.cursor:hover {
+  color: blue
+}
+
+.cursor {
+  cursor: pointer
+}
+
+.textarea {
+  resize: none
+}
 /*------ Typography Style Start ------*/
+
+
 body {
   color: #444444;
   line-height: 1.7;

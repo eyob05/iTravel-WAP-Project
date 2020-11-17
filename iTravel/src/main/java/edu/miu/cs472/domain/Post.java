@@ -26,6 +26,9 @@ public class Post implements Serializable {
     @Column(name = "TIME")
     private LocalDateTime time;
 
+    @Column(name = "LIKES")
+    private int likes;
+
     @Column(name = "ENABLED")
     private Boolean enabled;
 
@@ -91,7 +94,9 @@ public class Post implements Serializable {
     public LocalDateTime getTime() {
         return time;
     }
+    public int getLikes() {return likes;    }
 
+    public void setLikes(int likes) {this.likes = likes;    }
     public void setTime(LocalDateTime time) {
         this.time = time;
     }
@@ -107,4 +112,6 @@ public class Post implements Serializable {
                 ", enabled=" + enabled +
                 '}';
     }
+
+
 }

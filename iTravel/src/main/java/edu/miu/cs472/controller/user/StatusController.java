@@ -32,19 +32,32 @@ public class StatusController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
        try{
            String userId = request.getParameter("user_id");
-           long id = Long.parseLong(userId);
-           User user =  dao.findById(id);
-           if(user.isActive())
+           String userAccess = request.getParameter("user_access");
+           User userObj=null;
+           long id = 0L;
+           User user=null;
+           if(userId==null){
+               id = Long.parseLong(userAccess);
+               user =  dao.findById(id);
                user.setActive(Boolean.FALSE);
-           else
-               user.setActive(Boolean.TRUE);
-           User userObj = dao.create(user);
-           PrintWriter writer = response.getWriter();
-           String userJsonString = this.gson.toJson(userObj);
-           response.setContentType("application/json");
-           response.setCharacterEncoding("UTF-8");
-           writer.print(userJsonString);
-           writer.flush();
+               userObj = dao.create(user);
+               response.sendRedirect("index.jsp");
+           }else{
+               id = Long.parseLong(userId);
+               user =  dao.findById(id);
+               if(user.isActive())
+                   user.setActive(Boolean.FALSE);
+               else
+                   user.setActive(Boolean.TRUE);
+               userObj = dao.create(user);
+               PrintWriter writer = response.getWriter();
+               String userJsonString = this.gson.toJson(userObj);
+               response.setContentType("application/json");
+               response.setCharacterEncoding("UTF-8");
+               writer.print(userJsonString);
+               writer.flush();
+           }
+
        }catch (Exception ex){
            LOGGER.log(Level.SEVERE, ex.getMessage());
        }

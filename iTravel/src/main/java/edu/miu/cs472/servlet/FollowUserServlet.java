@@ -22,11 +22,9 @@ import java.io.PrintWriter;
 public class FollowUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        User user = (User)session.getAttribute("user");
+        User user = (User)req.getSession().getAttribute("user");
 
-        long followingid = Long.valueOf(req.getParameter("user"));
-
+        long followingid = Long.parseLong(req.getParameter("id"));
         //data access
         IUserDao userDao = new UserDao();
         IFollowDao followDao = new FollowDao();

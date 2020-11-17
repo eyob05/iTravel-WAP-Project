@@ -137,31 +137,40 @@ public class Test {
         post1.setPhoto(photo1);
         post1.setUser(user1);
         post1.setEnabled(true);
+        post1.setLikes(5);
+
 
         post2.setDetails("Keep up the good work");
         post2.setPhoto(photo2);
         post2.setUser(user1);
         post2.setEnabled(true);
+        post2.setLikes(3);
+
 
         post3.setDetails("I like the city");
         post3.setPhoto(photo3);
         post3.setUser(user2);
         post3.setEnabled(true);
+        post3.setLikes(7);
 
         post4.setDetails("Where is this please");
         post4.setPhoto(photo4);
         post4.setUser(user2);
         post4.setEnabled(true);
+        post4.setLikes(5);
 
         post5.setDetails("I was there, I loved it.");
         post5.setPhoto(photo5);
         post5.setUser(user2);
         post5.setEnabled(false);
+        post5.setLikes(0);
 
         post6.setDetails("Good to see you there with your siblings");
         post6.setPhoto(photo6);
         post6.setUser(user3);
         post6.setEnabled(true);
+        post6.setLikes(2);
+
 
         postDao = new PostDao();
         postDao.create(post1);

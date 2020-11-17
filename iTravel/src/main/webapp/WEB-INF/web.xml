@@ -6,20 +6,17 @@
   <display-name>Archetype Created Web Application</display-name>
   <context-param>
     <param-name>imageUploads</param-name>
-    <param-value>\Users\eyobweldeyohannes\Desktop\SEproject\new WAP2\iTravel-WAP-Project\iTravel\src\main\webapp\assets\images\pos</param-value>
-  </context-param>
-  <context-param>
-    <param-name>advertisements</param-name>
-    <param-value>/home/hendrix/Downloads/wap-clik-me/wap-clik-me/src/main/webapp/uploads/advertisements</param-value>
+    <param-value>\assets\images\post</param-value>
   </context-param>
   <context-param>
     <param-name>imageUploadsCover</param-name>
-    <param-value>/home/hendrix/Downloads/wap-clik-me/wap-clik-me/src/main/webapp/uploads/user/cover</param-value>
+    <param-value>\assets\images\banner</param-value>
   </context-param>
   <context-param>
     <param-name>imageUploadsDisplay</param-name>
-    <param-value>/home/hendrix/Downloads/wap-clik-me/wap-clik-me/src/main/webapp/uploads/user/display</param-value>
+    <param-value>\assets\images\profile</param-value>
   </context-param>
+
   <error-page>
     <!-- Missing resource -->
     <error-code>404</error-code>

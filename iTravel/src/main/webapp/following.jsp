@@ -261,10 +261,9 @@
                     </div>
                     <!-- Modal end -->
 
-                    <!--Timeline posts start-->
-                    <%@include file="extra/timeline_posts.jsp" %>
-                    <!--Timeline posts end-->
-
+                    <!--FOllowing lists-->
+                    <%@include file="extra/following_list.jsp" %>
+                    <!--Following lists end -->
                 </div>
 
                 <div class="col-lg-3 order-3">

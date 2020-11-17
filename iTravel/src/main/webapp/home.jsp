@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Adda - Social Network HTML Template</title>
+    <title>iTravel</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,29 +37,23 @@
     <link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css">
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
 
     <link rel="stylesheet" href="resources/css/weather.css">
 </head>
 
 <body>
-
-<%
-    Object object = session.getAttribute("user");
-    if (object == null) {
-        response.sendRedirect("/login");
-    }
-%>
-    <!-- header area start -->
+    <!-- header area(Home and Notification) start -->
     <header>
         <div class="header-top sticky bg-white d-none d-lg-block">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <!-- header top navigation start -->
                         <div class="header-top-navigation">
                             <nav>
                                 <ul>
-                                    <li class="active"><a href="index.html">home</a></li>
+                                    <li class="active"><a href="home">home</a></li>
                                   
                                     <li class="notification-trigger"><a class="msg-trigger-btn" href="#b">notification</a>
                                         <div class="message-dropdown" id="b">
@@ -152,49 +146,53 @@
                         <!-- header top navigation start -->
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <!-- brand logo start -->
                         <div class="brand-logo text-center">
-                            <a href="index.html">
+                            <a href="home">
                                 <img src="assets/images/logo/logo.png" alt="brand logo">
                             </a>
                         </div>
                         <!-- brand logo end -->
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-7">
                         <div class="header-top-right d-flex align-items-center justify-content-end">
-                            <!-- header top search start -->
+                            <!-- header by user search start -->
                             <div class="header-top-search">
                                 <form class="top-search-box">
-                                    <input type="text" placeholder="Search" class="top-search-field">
+                                    <input type="text" placeholder="Search by User" class="top-search-field">
                                     <button class="top-search-btn"><i class="flaticon-search"></i></button>
                                 </form>
                             </div>
-                            <!-- header top search end -->
+                            <!-- header by user search end -->
+
+                            <!-- header by post search start -->
+                            <div class="header-top-search">
+                                <form class="top-search-box">
+                                    <input type="text" placeholder="Search by Post" class="top-search-field">
+                                    <button class="top-search-btn"><i class="flaticon-search"></i></button>
+                                </form>
+                            </div>
+                            <!-- header by post search end -->
 
                             <!-- profile picture start -->
                             <div class="profile-setting-box">
                                 <div class="profile-thumb-small">
                                     <a href="javascript:void(0)" class="profile-triger">
                                         <figure>
-                                            <img src="assets/images/profile/profile-small-1.jpg" alt="profile picture">
+                                            <img src="${user.photoLink}" alt="assets/images/profile/male.png">
                                         </figure>
                                     </a>
                                     <div class="profile-dropdown">
                                         <div class="profile-head">
-                                            <h5 class="name"><a href="#">Madison Howard</a></h5>
-                                            <a class="mail" href="#">mailnam@mail.com</a>
+                                            <h5 class="name"><a href="profile?rf=${user.id}">${user.firstName} ${user.lastName}</a></h5>
+                                            <a class="mail" href="#">${user.email}</a>
                                         </div>
                                         <div class="profile-body">
                                             <ul>
-                                                <li><a href="profile.jsp"><i class="flaticon-user"></i>Profile</a></li>
-                                                <!-- <li><a href="#"><i class="flaticon-message"></i>Inbox</a></li>
-                                                <li><a href="#"><i class="flaticon-document"></i>Activity</a></li> -->
-                                            </ul>
-                                            <ul>
-                                                <li><a href="#"><i class="flaticon-settings"></i>Setting</a></li>
-                                                <li><a href="signup.html"><i class="flaticon-unlock"></i>Sing out</a></li>
+                                                <li><a href="profile?rf=${user.id}"><i class="flaticon-user"></i>Profile</a></li>
+                                                <li><a href="logout"><i class="flaticon-unlock"></i>Sign out</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -207,7 +205,7 @@
             </div>
         </div>
     </header>
-    <!-- header area end -->
+    <!-- header area(Home and Notification) end -->
 
     <main>
 
@@ -216,40 +214,26 @@
                 <div class="row">
                     <div class="col-lg-3 order-2 order-lg-1">
                         <aside class="widget-area">
-                            <!-- widget single item start -->
+                            <!-- Profile Picture and User start-->
                             <div class="card card-profile widget-item p-0">
                                 <div class="profile-banner">
 
-
-<%--                                    <div class="profile-picture-box">--%>
-<%--                                        <figure class="profile-banner-small">--%>
-<%--                                            <a href="profile.html">--%>
-<%--                                                <img src="assets/images/profile/male.png" alt="profile picture">--%>
-<%--                                            </a>--%>
-<%--                                        </figure>--%>
-<%--                                    </div>--%>
-
-
                                     <figure class="profile-banner-small">
-                                        <a href="profile.jsp">
-                                            <img src="assets/images/banner/" alt="">
-                                        </a>
-                                        <a href="profile.jsp" class="profile-thumb-2">
+                                        <a href="profile?rf=${user.id}" class="">
                                             <img src="assets/images/profile/male.png" alt="">
                                         </a>
                                     </figure>
 
-
                                     <div class="profile-desc text-center">
-                                        <h6 class="author"><a href="profile.jsp">${user.firstName} ${user.lastName}</a></h6>
+                                        <h6 class="author"><a href="profile?rf=${user.id}">${user.firstName} ${user.lastName}</a></h6>
                                         <p>Any one can join with but Social network us if you want Any one can join with us if you want</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- widget single item start -->
+                            <!-- Profile Picture and User end-->
 
 
-                            <!-- widget single item start -->
+                            <!-- widget Weather Condition start -->
                             <div class="card widget-item">
                                 <h4 class="widget-title">Weather Condition</h4>
                                 <div class="containe">
@@ -270,9 +254,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- widget single item end -->
+                            <!-- widget weather condition end -->
 
-                            <!-- widget single item start -->
+                            <!-- widget top news start -->
                             <div class="card widget-item">
                                 <h4 class="widget-title">latest top news</h4>
                                 <div class="widget-body">
@@ -360,7 +344,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!-- widget single item end -->
+                            <!-- widget top news end -->
                         </aside>
                     </div>
 
@@ -370,24 +354,24 @@
                             <div class="share-box-inner">
                                 <!-- profile picture end -->
                                 <div class="profile-thumb">
-                                    <a href="#">
+                                    <a href="profile?rf=${user.id}">
                                         <figure class="profile-thumb-middle">
-                                            <img src="assets/images/profile/profile-small-37.jpg" alt="profile picture">
+                                            <img alt="assets/images/profile/male.png" src="${user.photoLink}">
                                         </figure>
                                     </a>
                                 </div>
                                 <!-- profile picture end -->
 
-                                <!-- share content box start -->
+                                <!-- post content box start -->
                                 <div class="share-content-box w-100">
                                     <form class="share-text-box">
-                                        <textarea name="share" class="share-text-field" aria-disabled="true" placeholder="Say Something" data-toggle="modal" data-target="#textbox" id="email"></textarea>
+                                        <textarea name="share" class="share-text-field" aria-disabled="true" placeholder="Post travel moments..." data-toggle="modal" data-target="#textbox" id="email"></textarea>
                                         <button class="btn-share" type="submit">share</button>
                                     </form>
                                 </div>
-                                <!-- share content box end -->
+                                <!-- post content box end -->
 
-                                <!-- Modal start -->
+                                <!-- Post Modal start -->
                                 <div class="modal fade" id="textbox" aria-labelledby="textbox">
                                     <div class="modal-dialog">
                                         <form class="share-text-box" method="post" action="addPost" enctype="multipart/form-data" >
@@ -400,7 +384,7 @@
                                                     <%--                                                <%@include file="post_form.jsp"%>--%>
                                                 </div>
                                                 <div class="modal-body custom-scroll">
-                                                    <textarea name="postDetails" id="postDetails" class="share-field-big custom-scroll" placeholder="Say Something"></textarea>
+                                                    <textarea name="postDetails" id="postDetails" class="share-field-big custom-scroll" placeholder="say something..."></textarea>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="file" class="post-share-btn" name="image" id="image">
@@ -412,117 +396,28 @@
                                         </form>
                                     </div>
                                 </div>
-                                <!-- Modal end -->
+                                <!--Post Modal end -->
                             </div>
                         </div>
-                        <!-- share box end -->
-                        <%@include file="extra/post_body.jsp" %>
 
+
+                        <!-- Post cards start -->
+                        <div>
+                            <%@include file="extra/post_body.jsp" %>
+                        </div>
+                        <!-- Post cards start -->
                     </div>
 
                     <div class="col-lg-3 order-3">
                         <aside class="widget-area">
-                            <!-- widget single item start -->
+                            <!-- widget single Suggestions start -->
                             <div class="card widget-item">
-                                <h4 class="widget-title">Find Friends</h4>
+                                <h4 class="widget-title">Suggestions</h4>
                                 <div class="widget-body">
-                                    <ul class="like-page-list-wrapper">
-                                        <li class="unorder-list">
-                                            <!-- profile picture end -->
-                                            <div class="profile-thumb">
-                                                <a href="#">
-                                                    <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-33.jpg" alt="profile picture">
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <!-- profile picture end -->
-
-                                            <div class="unorder-list-info">
-                                                <h3 class="list-title"><a href="#">Ammeya Jakson</a></h3>
-                                                <p class="list-subtitle"><a href="#">10 mutual</a></p>
-                                            </div>
-                                            <div class="profile-edit-panel">
-                                                <button class="edit-btn">Follow</button>
-                                            </div>
-                                            <!-- <button class="like-button">
-                                                <img class="heart" src="assets/images/icons/heart.png" alt="">
-                                                <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
-                                            </button> -->
-                                        </li>
-                                        <li class="unorder-list">
-                                            <!-- profile picture end -->
-                                            <div class="profile-thumb">
-                                                <a href="#">
-                                                    <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-30.jpg" alt="profile picture">
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <!-- profile picture end -->
-
-                                            <div class="unorder-list-info">
-                                                <h3 class="list-title"><a href="#">Jashon Muri</a></h3>
-                                                <p class="list-subtitle"><a href="#">2 mutual</a></p>
-                                            </div>
-                                            <div class="profile-edit-panel">
-                                                <button class="edit-btn">Follow</button>
-                                            </div>
-                                            <!-- <button class="like-button active">
-                                                <img class="heart" src="assets/images/icons/heart.png" alt="">
-                                                <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
-                                            </button> -->
-                                        </li>
-                                        <li class="unorder-list">
-                                            <!-- profile picture end -->
-                                            <div class="profile-thumb">
-                                                <a href="#">
-                                                    <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-5.jpg" alt="profile picture">
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <!-- profile picture end -->
-
-                                            <div class="unorder-list-info">
-                                                <h3 class="list-title"><a href="#">Rolin Theitar</a></h3>
-                                                <p class="list-subtitle"><a href="#">drama</a></p>
-                                            </div>
-                                            <div class="profile-edit-panel">
-                                                <button class="edit-btn">Follow</button>
-                                            </div>
-                                            <!-- <button class="like-button">
-                                                <img class="heart" src="assets/images/icons/heart.png" alt="">
-                                                <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
-                                            </button> -->
-                                        </li>
-                                        <li class="unorder-list">
-                                            <!-- profile picture end -->
-                                            <div class="profile-thumb">
-                                                <a href="#">
-                                                    <figure class="profile-thumb-small">
-                                                        <img src="assets/images/profile/profile-small-29.jpg" alt="profile picture">
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <!-- profile picture end -->
-
-                                            <div class="unorder-list-info">
-                                                <h3 class="list-title"><a href="#">Active Mind</a></h3>
-                                                <p class="list-subtitle"><a href="#">fitness</a></p>
-                                            </div>
-                                            <div class="profile-edit-panel">
-                                                <button class="edit-btn">Follow</button>
-                                            </div>
-                                            <!-- <button class="like-button">
-                                                <img class="heart" src="assets/images/icons/heart.png" alt="">
-                                                <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
-                                            </button> -->
-                                        </li>
-                                    </ul>
+                                    <%@include file="extra/people_nearby_list.jsp" %>
                                 </div>
                             </div>
-                            <!-- widget single item end -->
+                            <!-- widget single Suggestions end -->
                         </aside>
                     </div>
                 </div>
@@ -536,7 +431,7 @@
         <i class="bi bi-finger-index"></i>
     </div>
     <!-- Scroll to Top End -->
-Resen
+
     <!-- JS
 ============================================ -->
 
@@ -564,7 +459,8 @@ Resen
     <script src="assets/js/plugins/isotope.pkgd.min.js"></script>
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-<script src="resources/js/app.js"></script>
+
+    <script src="resources/js/app.js"></script>
 
 </body>
 

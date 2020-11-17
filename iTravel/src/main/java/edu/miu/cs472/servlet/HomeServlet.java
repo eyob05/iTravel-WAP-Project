@@ -3,8 +3,11 @@ package edu.miu.cs472.servlet;
 import edu.miu.cs472.dao.post.INotificationDao;
 import edu.miu.cs472.dao.post.NotificationDao;
 //import edu.miu.cs472.domain.Advertisement;
+import edu.miu.cs472.dao.user.IUserDao;
+import edu.miu.cs472.dao.user.UserDao;
 import edu.miu.cs472.domain.User;
 import edu.miu.cs472.service.PostService;
+import edu.miu.cs472.service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,34 +24,34 @@ import java.util.logging.Logger;
 public class HomeServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(HomeServlet.class.getName());
-//    private IAdvertisementDao advertisementDao;
-    
     @Override
     public void init() throws ServletException {
         super.init();
-//        this.advertisementDao = new AdvertisementDao();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp){
         try {
-            // add testing date
+            HttpSession session = req.getSession();
             PostService postService = new PostService();
             INotificationDao notificationDao = new NotificationDao();
-            HttpSession session = req.getSession();
+
             User user;
 
-//            List<Advertisement> advertisements = advertisementDao.findAll();
-//            req.setAttribute("advertisements", advertisements);
-
             if (session != null) {
-
                 user = (User) session.getAttribute("authenticated");
                 req.setAttribute("user", user);
+                UserService userService = new UserService();
+                List<User> usersNearBy = userService.getUserNearBy(user);
+                IUserDao userDao = new UserDao();
+                List<User> followers = userDao.getUserFollowers(user);
+                session.setAttribute("usersNearBy", usersNearBy);
                 session.setAttribute("user",user);
                 session.setAttribute("notifications",notificationDao.findAll());
                 session.setAttribute("posts",postService.getPostsUserHome(user));
+                session.setAttribute("followers", followers);
                 RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
+
                 rd.forward(req, resp);
             } else {
                 resp.sendRedirect("/");
