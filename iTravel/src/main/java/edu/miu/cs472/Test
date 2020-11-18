@@ -1,207 +1,207 @@
-package edu.miu.cs472;
-
-import com.mysql.cj.protocol.x.Notice;
-import edu.miu.cs472.dao.post.*;
-import edu.miu.cs472.dao.user.*;
-import edu.miu.cs472.domain.*;
-
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-public class Test {
-//    public static void main(String[] args){
-//       IUserDao  userDao = new UserDao();
-//        User user = userDao.findById(1L);
-////        List<User> list = userDao.getUserNearBy(user);
+//package edu.miu.cs472;
 //
-//        IPostDao postDao = new PostDao();
-//        List<Post> list = postDao.getPostsUserHome(user);
-//        for(Post u: list)
-//            System.out.println(u);
+//import com.mysql.cj.protocol.x.Notice;
+//import edu.miu.cs472.dao.post.*;
+//import edu.miu.cs472.dao.user.*;
+//import edu.miu.cs472.domain.*;
+//
+//
+//import java.time.LocalDate;
+//import java.time.LocalDateTime;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//public class Test {
+////    public static void main(String[] args){
+////       IUserDao  userDao = new UserDao();
+////        User user = userDao.findById(1L);
+//////        List<User> list = userDao.getUserNearBy(user);
+////
+////        IPostDao postDao = new PostDao();
+////        List<Post> list = postDao.getPostsUserHome(user);
+////        for(Post u: list)
+////            System.out.println(u);
+////
+////
+////
+////    }
+////}
+//    public static User user1 = new User("Henok", "A", "Haile", "123 W Main", "Fairfield", "IOWA", "39456", "Konehus@hotmail.com", "password", "Male", "user" );
+//    public static User user2 = new User("Smega", "B", "Gulta Gele", "456 N St", "San Jose", "CA", "34444", "smega@yahoo.com","pass","Male", "user");
+//    public static User user3 = new User("Efar", "S", "Hailemariam", "999 W Main", "Fairfield", "IOWA", "39432", "efar@hotmail.com", "password", "Male", "user" );
+//    public static User user4 = new User("Luwi", "B", "Kiros", "784 W Main", "Fairfield", "IOWA", "39456", "Konehus@hotmail.com", "password", "Female", "user" );
+//    public static User user5 = new User("John", "R", "Smith", "883 Sharmon Palms Ln", "Campbell", "IOWA", "95008", "smith@gmail.com", "password", "Male", "user" );
+//
+//    public static Follow follow1 = new Follow();
+//    public static Follow follow2 = new Follow();
+//    public static Follow follow3 = new Follow();
+//    public static Follow follow4 = new Follow();
+//    public static Follow follow5 = new Follow();
+//    public static Follow follow6 = new Follow();
+//    public static Follow follow7 = new Follow();
+//    public static Follow follow8 = new Follow();
+//
+//
+//    public static Post post1 = new Post();
+//    public static Post post2 = new Post();
+//    public static Post post3 = new Post();
+//    public static Post post4 = new Post();
+//    public static Post post5 = new Post();
+//    public static Post post6 = new Post();
+//
+//    public static Notification notification1 = new Notification("This is first Notification", LocalDateTime.now(),post1,user1);
+//    public static Notification notification2 = new Notification("This is first Notification", LocalDateTime.now(),post2,user1);
+//    public static Notification notification3 = new Notification("This is first Notification", LocalDateTime.now(),post3,user2);
+//    public static Notification notification4 = new Notification("This is first Notification", LocalDateTime.now(),post4,user3);
+//    public static Notification notification5 = new Notification("This is first Notification", LocalDateTime.now(),post5,user4);
+//    public static Notification notification6 = new Notification("This is first Notification", LocalDateTime.now(),post6,user4);
+//
+//    public static Comment comment1 = new Comment(" comment 1: This is awesome", post1,user1);
+//    public static Comment comment2 = new Comment(" comment 2: This is awesome", post1,user2);
+//    public static Comment comment3 = new Comment(" comment 3: This is awesome", post2,user2);
+//    public static Comment comment4 = new Comment(" comment 4: This is awesome", post2,user3);
+//    public static Comment comment5 = new Comment(" comment 5: This is awesome", post4,user4);
+//    public static Comment comment6 = new Comment(" comment 6: This is awesome", post4,user4);
+//    public static Comment comment7 = new Comment(" comment 7: This is awesome", post4,user3);
+//    public static Comment comment8 = new Comment(" comment 8: This is awesome", post4,user5);
+//    public static Comment comment9 = new Comment(" comment 9: This is awesome", post4,user5);
+//    public static Comment comment10 = new Comment(" comment 10: This is awesome", post5,user5);
+//
+//
+////    public static Photo photo1 = new Photo("this/aaa.png");
+////    public static Photo photo2 = new Photo("this/bbb.png");
+////    public static Photo photo3 = new Photo("this/ccc.png");
+////    public static Photo photo4 = new Photo("this/ddd.png");
+////    public static Photo photo5 = new Photo("this/eee.png");
+////    public static Photo photo6 = new Photo("this/fff.png");
+//
+//    private static IPostDao postDao;
+//    private static IUserDao userDao;
+//    private static IFollowDao followDao;
+//    private static ICommentDao commentDao;
+//    private static INotificationDao notificationDao;
+//    private static IPhotoDao photoDao;
+//
+//    public static void main(String[] args) {
+//        userDao = new UserDao();
+//        userDao.create(user1);
+//        userDao.create(user2);
+//        userDao.create(user3);
+//        userDao.create(user4);
+//        userDao.create(user5);
+//
+//        follow1.setFollowed(user1);
+//        follow1.setFollower(user2);
+//
+//        follow2.setFollowed(user1);
+//        follow2.setFollower(user3);
+//
+//        follow3.setFollowed(user1);
+//        follow3.setFollower(user3);
+//
+//        follow4.setFollowed(user2);
+//        follow4.setFollower(user1);
+//
+//        follow5.setFollowed(user2);
+//        follow5.setFollower(user4);
+//
+//        follow6.setFollowed(user5);
+//        follow6.setFollower(user1);
+//
+//        follow7.setFollowed(user4);
+//        follow7.setFollower(user2);
+//
+//        follow8.setFollowed(user3);
+//        follow8.setFollower(user2);
+//
+//        followDao = new FollowDao();
+//
+//        followDao.create(follow1);
+//        followDao.create(follow2);
+//        followDao.create(follow3);
+//        followDao.create(follow4);
+//        followDao.create(follow5);
+//        followDao.create(follow6);
+//        followDao.create(follow7);
+//        followDao.create(follow8);
+//
+////        photoDao = new PhotoDao();
+//////        photoDao.create(photo1);
+//////        photoDao.create(photo2);
+//////        photoDao.create(photo3);
+//////        photoDao.create(photo4);
+//////        photoDao.create(photo5);
+//////        photoDao.create(photo6);
+//
+//        post1.setDetails("Best picture Ever! I want to be there.");
+////        post1.setPhoto(photo1);
+//        post1.setUser(user1);
+//        post1.setEnabled(true);
+//        post1.setLikes(5);
+//
+//
+//        post2.setDetails("Keep up the good work");
+////        post2.setPhoto(photo2);
+//        post2.setUser(user1);
+//        post2.setEnabled(true);
+//        post2.setLikes(3);
+//
+//
+//        post3.setDetails("I like the city");
+////        post3.setPhoto(photo3);
+//        post3.setUser(user2);
+//        post3.setEnabled(true);
+//        post3.setLikes(7);
+//
+//        post4.setDetails("Where is this please");
+////        post4.setPhoto(photo4);
+//        post4.setUser(user2);
+//        post4.setEnabled(true);
+//        post4.setLikes(5);
+//
+//        post5.setDetails("I was there, I loved it.");
+////        post5.setPhoto(photo5);
+//        post5.setUser(user2);
+//        post5.setEnabled(false);
+//        post5.setLikes(0);
+//
+//        post6.setDetails("Good to see you there with your siblings");
+////        post6.setPhoto(photo6);
+//        post6.setUser(user3);
+//        post6.setEnabled(true);
+//        post6.setLikes(2);
+//
+//
+//        postDao = new PostDao();
+//        postDao.create(post1);
+//        postDao.create(post2);
+//        postDao.create(post3);
+//        postDao.create(post4);
+//        postDao.create(post5);
+//        postDao.create(post6);
+//
+//        commentDao = new CommentDao();
+//        commentDao.create(comment1);
+//        commentDao.create(comment2);
+//        commentDao.create(comment3);
+//        commentDao.create(comment4);
+//        commentDao.create(comment5);
+//        commentDao.create(comment6);
+//        commentDao.create(comment7);
+//        commentDao.create(comment8);
+//        commentDao.create(comment9);
+//        commentDao.create(comment10);
+//
+//        notificationDao = new NotificationDao();
+//        notificationDao.create(notification1);
+//        notificationDao.create(notification2);
+//        notificationDao.create(notification3);
+//        notificationDao.create(notification4);
+//        notificationDao.create(notification5);
+//        notificationDao.create(notification6);
 //
 //
 //
 //    }
+//
 //}
-    public static User user1 = new User("Henok", "A", "Haile", "123 W Main", "Fairfield", "IOWA", "39456", "Konehus@hotmail.com", "password", "Male", "user" );
-    public static User user2 = new User("Smega", "B", "Gulta Gele", "456 N St", "San Jose", "CA", "34444", "smega@yahoo.com","pass","Male", "user");
-    public static User user3 = new User("Efar", "S", "Hailemariam", "999 W Main", "Fairfield", "IOWA", "39432", "efar@hotmail.com", "password", "Male", "user" );
-    public static User user4 = new User("Luwi", "B", "Kiros", "784 W Main", "Fairfield", "IOWA", "39456", "Konehus@hotmail.com", "password", "Female", "user" );
-    public static User user5 = new User("John", "R", "Smith", "883 Sharmon Palms Ln", "Campbell", "IOWA", "95008", "smith@gmail.com", "password", "Male", "user" );
-
-    public static Follow follow1 = new Follow();
-    public static Follow follow2 = new Follow();
-    public static Follow follow3 = new Follow();
-    public static Follow follow4 = new Follow();
-    public static Follow follow5 = new Follow();
-    public static Follow follow6 = new Follow();
-    public static Follow follow7 = new Follow();
-    public static Follow follow8 = new Follow();
-
-
-    public static Post post1 = new Post();
-    public static Post post2 = new Post();
-    public static Post post3 = new Post();
-    public static Post post4 = new Post();
-    public static Post post5 = new Post();
-    public static Post post6 = new Post();
-
-    public static Notification notification1 = new Notification("This is first Notification", LocalDateTime.now(),post1,user1);
-    public static Notification notification2 = new Notification("This is first Notification", LocalDateTime.now(),post2,user1);
-    public static Notification notification3 = new Notification("This is first Notification", LocalDateTime.now(),post3,user2);
-    public static Notification notification4 = new Notification("This is first Notification", LocalDateTime.now(),post4,user3);
-    public static Notification notification5 = new Notification("This is first Notification", LocalDateTime.now(),post5,user4);
-    public static Notification notification6 = new Notification("This is first Notification", LocalDateTime.now(),post6,user4);
-
-    public static Comment comment1 = new Comment(" comment 1: This is awesome", post1,user1);
-    public static Comment comment2 = new Comment(" comment 2: This is awesome", post1,user2);
-    public static Comment comment3 = new Comment(" comment 3: This is awesome", post2,user2);
-    public static Comment comment4 = new Comment(" comment 4: This is awesome", post2,user3);
-    public static Comment comment5 = new Comment(" comment 5: This is awesome", post4,user4);
-    public static Comment comment6 = new Comment(" comment 6: This is awesome", post4,user4);
-    public static Comment comment7 = new Comment(" comment 7: This is awesome", post4,user3);
-    public static Comment comment8 = new Comment(" comment 8: This is awesome", post4,user5);
-    public static Comment comment9 = new Comment(" comment 9: This is awesome", post4,user5);
-    public static Comment comment10 = new Comment(" comment 10: This is awesome", post5,user5);
-
-
-    public static Photo photo1 = new Photo("this/aaa.png");
-    public static Photo photo2 = new Photo("this/bbb.png");
-    public static Photo photo3 = new Photo("this/ccc.png");
-    public static Photo photo4 = new Photo("this/ddd.png");
-    public static Photo photo5 = new Photo("this/eee.png");
-    public static Photo photo6 = new Photo("this/fff.png");
-
-    private static IPostDao postDao;
-    private static IUserDao userDao;
-    private static IFollowDao followDao;
-    private static ICommentDao commentDao;
-    private static INotificationDao notificationDao;
-    private static IPhotoDao photoDao;
-
-    public static void main(String[] args) {
-        userDao = new UserDao();
-        userDao.create(user1);
-        userDao.create(user2);
-        userDao.create(user3);
-        userDao.create(user4);
-        userDao.create(user5);
-
-        follow1.setFollowed(user1);
-        follow1.setFollower(user2);
-
-        follow2.setFollowed(user1);
-        follow2.setFollower(user3);
-
-        follow3.setFollowed(user1);
-        follow3.setFollower(user3);
-
-        follow4.setFollowed(user2);
-        follow4.setFollower(user1);
-
-        follow5.setFollowed(user2);
-        follow5.setFollower(user4);
-
-        follow6.setFollowed(user5);
-        follow6.setFollower(user1);
-
-        follow7.setFollowed(user4);
-        follow7.setFollower(user2);
-
-        follow8.setFollowed(user3);
-        follow8.setFollower(user2);
-
-        followDao = new FollowDao();
-
-        followDao.create(follow1);
-        followDao.create(follow2);
-        followDao.create(follow3);
-        followDao.create(follow4);
-        followDao.create(follow5);
-        followDao.create(follow6);
-        followDao.create(follow7);
-        followDao.create(follow8);
-
-        photoDao = new PhotoDao();
-        photoDao.create(photo1);
-        photoDao.create(photo2);
-        photoDao.create(photo3);
-        photoDao.create(photo4);
-        photoDao.create(photo5);
-        photoDao.create(photo6);
-
-        post1.setDetails("Best picture Ever! I want to be there.");
-        post1.setPhoto(photo1);
-        post1.setUser(user1);
-        post1.setEnabled(true);
-        post1.setLikes(5);
-
-
-        post2.setDetails("Keep up the good work");
-        post2.setPhoto(photo2);
-        post2.setUser(user1);
-        post2.setEnabled(true);
-        post2.setLikes(3);
-
-
-        post3.setDetails("I like the city");
-        post3.setPhoto(photo3);
-        post3.setUser(user2);
-        post3.setEnabled(true);
-        post3.setLikes(7);
-
-        post4.setDetails("Where is this please");
-        post4.setPhoto(photo4);
-        post4.setUser(user2);
-        post4.setEnabled(true);
-        post4.setLikes(5);
-
-        post5.setDetails("I was there, I loved it.");
-        post5.setPhoto(photo5);
-        post5.setUser(user2);
-        post5.setEnabled(false);
-        post5.setLikes(0);
-
-        post6.setDetails("Good to see you there with your siblings");
-        post6.setPhoto(photo6);
-        post6.setUser(user3);
-        post6.setEnabled(true);
-        post6.setLikes(2);
-
-
-        postDao = new PostDao();
-        postDao.create(post1);
-        postDao.create(post2);
-        postDao.create(post3);
-        postDao.create(post4);
-        postDao.create(post5);
-        postDao.create(post6);
-
-        commentDao = new CommentDao();
-        commentDao.create(comment1);
-        commentDao.create(comment2);
-        commentDao.create(comment3);
-        commentDao.create(comment4);
-        commentDao.create(comment5);
-        commentDao.create(comment6);
-        commentDao.create(comment7);
-        commentDao.create(comment8);
-        commentDao.create(comment9);
-        commentDao.create(comment10);
-
-        notificationDao = new NotificationDao();
-        notificationDao.create(notification1);
-        notificationDao.create(notification2);
-        notificationDao.create(notification3);
-        notificationDao.create(notification4);
-        notificationDao.create(notification5);
-        notificationDao.create(notification6);
-
-
-
-    }
-
-}

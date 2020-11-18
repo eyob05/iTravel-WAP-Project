@@ -51,6 +51,7 @@ public class UserController extends HttpServlet {
         try{
             INotificationDao notificationDao = new NotificationDao();
             User user = userObj(request);
+
             dao.create(user);
             PrintWriter writer = response.getWriter();
             //user must login automatically
@@ -59,6 +60,10 @@ public class UserController extends HttpServlet {
 //            response.setCharacterEncoding("UTF-8");
             HttpSession session = request.getSession();
             session.setAttribute("user",user);
+            session.setAttribute("username", user.getEmail());
+            session.setAttribute("password", user.getPassword());
+            session.setAttribute("authenticated", user);
+
             session.setAttribute("notifications",notificationDao.findAll());
             RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
             rd.forward(request, response);

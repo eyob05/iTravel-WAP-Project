@@ -26,7 +26,7 @@ public class NotificationsServlet extends HttpServlet {
         List<Notification> notifications =notificationDao.getNotificationsByUser(user);
         req.setAttribute("notifications",notifications);
         notificationDao.updateNotifications(notifications);
-        req.getRequestDispatcher("views/user/notifications.jsp").forward(req,resp);
+//        req.getRequestDispatcher("views/user/notifications.jsp").forward(req,resp);
     }
 
     @Override

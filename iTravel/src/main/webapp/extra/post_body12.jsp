@@ -1,5 +1,5 @@
 <div id="postsList">
-    <c:forEach var = "post" items="${timelinePosts}">
+    <c:forEach var = "post" items="${posts}">
         <!-- post status start -->
         <div id="postsListDivTemplate" class="card">
             <!-- post title start -->
@@ -9,7 +9,7 @@
                     <a href="#">
                         <figure class="profile-thumb-middle">
                             <a href="profile?rf=${post.user.id}">
-                                <img alt="assets/images/profile/male.png" src="${post.user.photoLink}">
+                                    <img alt="assets/images/profile/male.png" src="${post.user.photoLink}">
                             </a>
                         </figure>
                     </a>
@@ -37,7 +37,7 @@
             <!-- post title start -->
             <div class="post-content">
                 <p class="postDetails post-desc">
-                        ${post.details}
+                    ${post.details}
                 </p>
                 <div class="postCommentUserImage post-thumb-gallery">
                     <figure class=" postCommentUserImage post-thumb img-popup">
@@ -47,16 +47,16 @@
                     </figure>
                 </div>
                 <div class="post-meta">
-                        <%--                    <button class="post-meta-like" id="${post.id}id" onclick="addLikes(${post.id},${post.likes})">--%>
-                        <%--                        <i class="bi bi-heart-beat"></i>--%>
-                        <%--                        <span id="${post.id}likespan">${post.likes} people like this</span>--%>
-                        <%--                        <strong>${post.likes}</strong>--%>
-                        <%--                    </button>--%>
+                    <button class="post-meta-like" id="${post.id}id" onclick="addLikes(${post.id},${post.likes})">
+                        <i class="bi bi-heart-beat"></i>
+                        <span id="${post.id}likespan">${post.likes} people like this</span>
+                        <strong>${post.likes}</strong>
+                    </button>
                     <ul class="comment-share-meta">
                         <li>
                             <button id="displayComments_${post.id}" class="post-comment">
                                 <i class="bi bi-chat-bubble"></i>
-                                <span>41</span>
+                                <span>${post.comments.size()}</span>
                             </button>
                         </li>
                         <li>
@@ -77,7 +77,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="comment-area">
                 <div id='comments_${post.id}' class="container mt-auto">
                     <div class=" row">
@@ -109,11 +108,11 @@
 
 
                                 </c:forEach>
-                                    <%--                        <div class="bg-white">--%>
-                                    <%--                            --%>
-                                    <%--                        </div>--%>
+            <%--                        <div class="bg-white">--%>
+            <%--                            --%>
+            <%--                        </div>--%>
                                 <div class="bg-light p-2">
-                                    <form method="post" action="addPostComment" class="postCommentForm" id="${post.id}_postCommentForm">
+                                    <form method="POST" action="addPostComment" class="postCommentForm" id="${post.id}_postCommentForm">
                                         <div class="d-flex flex-row align-items-start">
                                             <div class="profile-thumb">
                                                 <a href="#">
@@ -131,7 +130,7 @@
                                             <div style="display: none" class="savingPostComment" id="${post.id}_savingPostComment">
                                                 Posting.....
                                             </div>
-                                            <button class="postComment" id="${$post.id}_postComment" type="submit">Post Comment</button>
+                                            <button id="postComment_${$post.id}" type="submit">Post Comment</button>
                                         </div>
                                     </form>
                                 </div>
@@ -140,13 +139,50 @@
                     </div>
                 </div>
             </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+                <%--$(function(){--%>
+                <%--  $('#postComment_${post.id}').click(function() {--%>
+                <%--      console.log(${post.id});--%>
+                <%--      var postComment = $("#" + ${post.id} + '_postCommentArea').val();--%>
+                <%--      $.ajax("addPostComment", {--%>
+                <%--          "type": "POST",--%>
+                <%--          "data": {"postComment": postComment,--%>
+                <%--              "commentPostId": "${post.id}"}--%>
+                <%--      }).done(function (response) {--%>
 
 
+                <%--      }).fail(function () {--%>
+                <%--          alert("Failed!");--%>
 
+                <%--      });--%>
+                <%--  });--%>
+                <%--});--%>
+
+
+            </script>
+            <script>
+                $(function(){
+                    let hidden = true;
+                    $('#comments_${post.id}').hide();
+
+                    $('#displayComments_${post.id}').click(function(){
+                        if(hidden){
+                            $('#comments_${post.id}').show();
+                            hidden = false;
+                        }
+                        else{
+                            $('#comments_${post.id}').hide();
+                            hidden = true;
+                        }
+                    });
+                });
+            </script>
 
         </div>
     </c:forEach>
-    <!-- post status end -->
+
+        <!-- post status end -->
 
 </div>
 
@@ -166,39 +202,8 @@
 
     });
 </script>
-<script>
-    $(function(){
-        let hidden = true;
-        $('#comments_${post.id}').hide();
 
-        $('#displayComments_${post.id}').click(function(){
-            if(hidden){
-                $('#comments_${post.id}').show();
-                hidden = false;
-            }
-            else{
-                $('#comments_${post.id}').hide();
-                hidden = true;
-            }
-        });
-    });
-</script>
-<script>
-    $("#${$post.id}_postComment").click(function(){
 
-        $.ajax( "addPostComment", {
-            "type" : "POST",
-            "data" : {"commentPostId" : "${post.id}"}
-        }).done(function(response){
-            if(response){
-                $("#${user.id}_followingCard").hide() ;
-            }
-
-        }).fail(function (){
-            alert("Failed!");
-        })
-    });
-</script>
 <script>
     function addLikes(id,likes) {
         var num=likes;

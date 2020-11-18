@@ -23,20 +23,7 @@ public class LoginServlet extends HttpServlet {
 
         try {
             HttpSession session = req.getSession();
-            String username = (String)session.getAttribute("username");
-            String password = (String)session.getAttribute("password");
 
-//            IUserDao userDao = new UserDao();
-//            List<User> users = userDao.findAll();
-//            User userObj = null;
-//            for (User user : users) {
-//                if (user.getEmail().equals(username.trim())
-//                        && user.getPassword().equals(password.trim())) {
-//                    userObj = user;
-//                    break;
-//                }
-//            }
-//            req.setAttribute("user", userObj);
             System.out.println("redirected to home servlet!");
             resp.sendRedirect("/home");
         } catch (Exception ex) {

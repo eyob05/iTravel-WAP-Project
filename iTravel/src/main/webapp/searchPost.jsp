@@ -59,45 +59,84 @@
                                         <div class="message-dropdown" id="b">
                                             <div class="dropdown-title">
                                                 <p class="recent-msg">Notification</p>
-                                                <form method="GET" action="notifications">
-                                                <button type="submit">
+                                                <button>
                                                     <i class="flaticon-settings"></i>
                                                 </button>
-                                                </form>
                                             </div>
                                             <ul class="dropdown-msg-list">
+                                                <li class="msg-list-item d-flex justify-content-between">
+                                                    <!-- profile picture end -->
+                                                    <div class="profile-thumb">
+                                                        <figure class="profile-thumb-middle">
+                                                            <img src="assets/images/profile/profile-small-3.jpg" alt="profile picture">
+                                                        </figure>
+                                                    </div>
+                                                    <!-- profile picture end -->
 
-                                                <c:forEach var="notf" items="${sessionScope.notifications}">
-                                                    <li class="msg-list-item d-flex justify-content-between">
-                                                        <<!-- profile picture end -->
-                                                        <div class="profile-thumb">
-                                                            <a href="#">
-                                                                <figure class="profile-thumb-middle">
-                                                                    <a href="profile?rf=${notf.user.id}">
-                                                                        <img alt="assets/images/profile/male.png" src="${notf.user.photoLink}">
-                                                                    </a>
-                                                                </figure>
-                                                            </a>
-                                                        </div>
-                                                        <!-- profile picture end -->
+                                                    <!-- message content start -->
+                                                    <div class="msg-content notification-content">
+                                                        <a href="profile.jsp">Robert Faul</a>,
+                                                        <a href="profile.jsp">william jhon</a>
+                                                        <p>and 35 other people reacted to your photo</p>
+                                                    </div>
+                                                    <!-- message content end -->
 
-                                                        <!-- message content start -->
-                                                        <div class="msg-content notification-content">
-                                                            <a href="profile.jsp">${notf.user.firstName} ${notf.user.lastName}</a>
-                                                        </div>
-                                                        <!-- message content end -->
-                                                        <div class="notifi-meta">
-                                                            <p>${notf.details}</p>
-                                                            <span>${notf.notTime}</span>
-                                                        </div>
+                                                    <!-- message time start -->
+                                                    <div class="msg-time">
+                                                        <p>25 Apr 2019</p>
+                                                    </div>
+                                                    <!-- message time end -->
+                                                </li>
+                                                <li class="msg-list-item d-flex justify-content-between">
+                                                    <!-- profile picture end -->
+                                                    <div class="profile-thumb">
+                                                        <figure class="profile-thumb-middle">
+                                                            <img src="assets/images/profile/profile-small-4.jpg" alt="profile picture">
+                                                        </figure>
+                                                    </div>
+                                                    <!-- profile picture end -->
 
-                                                    </li>
-                                                </c:forEach>
+                                                    <!-- message content start -->
+                                                    <div class="msg-content notification-content">
+                                                        <a href="profile.jsp">Robert mushkil</a>,
+                                                        <a href="profile.jsp">Terry jhon</a>
+                                                        <p>and 20 other people reacted to your photo</p>
+                                                    </div>
+                                                    <!-- message content end -->
 
+                                                    <!-- message time start -->
+                                                    <div class="msg-time">
+                                                        <p>20 May 2019</p>
+                                                    </div>
+                                                    <!-- message time end -->
+                                                </li>
+                                                <li class="msg-list-item d-flex justify-content-between">
+                                                    <!-- profile picture end -->
+                                                    <div class="profile-thumb">
+                                                        <figure class="profile-thumb-middle">
+                                                            <img src="assets/images/profile/profile-small-6.jpg" alt="profile picture">
+                                                        </figure>
+                                                    </div>
+                                                    <!-- profile picture end -->
+
+                                                    <!-- message content start -->
+                                                    <div class="msg-content notification-content">
+                                                        <a href="profile.jsp">Horijon Mbala</a>,
+                                                        <a href="profile.jsp">Bashu jhon</a>
+                                                        <p>and 55 other people reacted to your post</p>
+                                                    </div>
+                                                    <!-- message content end -->
+
+                                                    <!-- message time start -->
+                                                    <div class="msg-time">
+                                                        <p>15 Jan 2019</p>
+                                                    </div>
+                                                    <!-- message time end -->
+                                                </li>
                                             </ul>
                                             <div class="msg-dropdown-footer">
-<%--                                                <button>See all in messenger</button>--%>
-<%--                                                <button>Mark All as Read</button>--%>
+                                                <button>See all in messenger</button>
+                                                <button>Mark All as Read</button>
                                             </div>
                                         </div>
                                     </li>
@@ -107,7 +146,7 @@
                         <!-- header top navigation start -->
                     </div>
 
-                    <div class="col-md-1">
+                    <div class="col-md-2">
                         <!-- brand logo start -->
                         <div class="brand-logo text-center">
                             <a href="home">
@@ -117,24 +156,9 @@
                         <!-- brand logo end -->
                     </div>
 
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <div class="header-top-right d-flex align-items-center justify-content-end">
-                            <!-- header by user search start -->
-                            <div class="header-top-search">
-                                <form action="searchbyuser" method="post" class="top-search-box">
-                                    <input type="text" placeholder="Search by User" name="searchuser" class="top-search-field">
-                                    <button type="submit" class="top-search-btn"><i class="flaticon-search"></i></button>
-                                </form>
-                            </div>
-                            <!-- header by user search end -->
-                            <!-- header by post search start -->
-                            <div class="header-top-search">
-                                <form action="searchbypost" method="post" class="top-search-box">
-                                    <input type="text" placeholder="Search by Post" name="searchpost" class="top-search-field">
-                                    <button type="submit" class="top-search-btn"><i class="flaticon-search"></i></button>
-                                </form>
-                            </div>
-                            <!-- header by post search end -->
+
                             <!-- profile picture start -->
                             <div class="profile-setting-box">
                                 <div class="profile-thumb-small">
@@ -310,40 +334,22 @@
                     <div class="col-lg-6 order-1 order-lg-2">
                         <!-- share box start -->
                         <div class="card card-small">
+
+
                             <div class="share-box-inner">
-                                <!-- profile picture end -->
-                                <div class="profile-thumb">
-                                    <a href="profile?rf=${user.id}">
-                                        <figure class="profile-thumb-middle">
-                                            <img alt="assets/images/profile/male.png" src="${user.photoLink}">
-                                        </figure>
-                                    </a>
-                                </div>
-                                <!-- profile picture end -->
-
-                                <!-- post content box start -->
-                                <div class="share-content-box w-100">
-                                    <form class="share-text-box">
-                                        <textarea name="share" class="share-text-field" aria-disabled="true" placeholder="Post travel moments..." data-toggle="modal" data-target="#textbox" id="email"></textarea>
-                                    </form>
-                                </div>
-                                <!-- post content box end -->
-
-                               <!--Post Modal form start-->
-                                <div class="newpst-input">
-                                <%@include file="extra/post_form.jsp"%>
-                                </div>
-                                <!--Post modal form end-->
+                                <h4 class="widget-title">Search by Post Results</h4>
                             </div>
                         </div>
 
 
                         <!-- Post cards start -->
-                        <div class="load-more">
+                        <div>
                             <%@include file="extra/post_body12.jsp" %>
                         </div>
                         <!-- Post cards start -->
                     </div>
+
+
 
                     <div class="col-lg-3 order-3">
                         <aside class="widget-area">
@@ -396,9 +402,9 @@
     <script src="assets/js/plugins/isotope.pkgd.min.js"></script>
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-    <script src="resources/js/post.js" type="text/javascript" ></script>
+
     <script src="resources/js/app.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </body>
 
 </html>

@@ -44,14 +44,14 @@ public class PostServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("1 Reaching the post Servlet");
         UPLOAD_DIRECTORY = req.getServletContext().getInitParameter("imageUploads");
-        //String photoDetails= req.getParameter("detail");
 
         Photo photo = new Photo();
-        String photoLink = "";
+        String photoNameLink = "";
         Map<String, String> params = new HashMap<>();
 
         Post post = new Post();
         System.out.println("2 Reaching the post Servlet");
+
         //process only if its multipart content
         if(ServletFileUpload.isMultipartContent(req)){
             try {
@@ -68,10 +68,11 @@ public class PostServlet extends HttpServlet {
                     else{
                         String name = new File(item.getName()).getName();
                         // set the photo name
-                        photoLink = name;
-                        System.out.println(photoLink);
-                        photo.setLink(photoLink);
-                        item.write( new File(UPLOAD_DIRECTORY + File.separator + photoLink));
+                        photoNameLink = UPLOAD_DIRECTORY+File.separator+name;
+
+                        System.out.println(photoNameLink);
+
+                        item.write( new File(photoNameLink));
                     }
                 }
                 System.out.println("5 Reaching the post Servlet");
@@ -89,31 +90,40 @@ public class PostServlet extends HttpServlet {
         // add post to the database
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("user");
-        post.setDetails(params.get("postDetails"));
+
+        //adding photo to the Database
+        photo.setLink(photoNameLink);
+        IPhotoDao photoDao = new PhotoDao();
+        photoDao.create(photo);
 
         post.setPhoto(photo);
         post.setUser(user);
         post.setTime(LocalDateTime.now());
         post.setEnabled(true);
+        post.setDetails(params.get("postDetails"));
 
         // add post to database
         IPostDao postDao = new PostDao();
-        IPhotoDao photoDao = new PhotoDao();
+
 
         PostService postService = new PostService();
         Post dbPost = postDao.create(post);
-        Photo dbPhoto = photoDao.create(photo);
+
         // send notifications
         postService.addPostNotification(post);
+
         //post.setUser(new User());
+
         // save post to database
-        //PrintWriter out = resp.getWriter();
-        resp.sendRedirect("home.jsp");
+        PrintWriter out = resp.getWriter();
         // convert to json
-//        Gson gn = new Gson();
-//        String postsJson = gn.toJson(postService.getPostsUserHome(user));
-//        resp.setContentType("application/json");
-//        out.write(postsJson);
+        Gson gn = new Gson();
+        String postsJson = gn.toJson(postService.getPostsUserHome(user));
+        resp.setContentType("application/json");
+        System.out.println("writing to json");
+        out.write(postsJson);
+
+
         //abstractDao.save(post);
 
 

@@ -52,6 +52,7 @@ public class HomeServlet extends HttpServlet {
                 session.setAttribute("followers", followers);
                 RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
 
+
                 rd.forward(req, resp);
             } else {
                 resp.sendRedirect("/");

@@ -95,7 +95,7 @@
 <%--                        </div>--%>
                         <div class="bg-light p-2">
                             <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea class="form-control ml-1 shadow-none textarea"></textarea></div>
-                            <div class="mt-2 text-right"><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Post Comment</button></div>
+                            <div id class="mt-2 text-right"><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Post Comment</button></div>
                         </div>
                     </div>
                 </div>
@@ -107,6 +107,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
+
             $(function(){
                 let hidden = true;
                 $('#comments_${post.id}').hide();
